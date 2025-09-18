@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+    RewriteBase /sosialhub/
+
+    # Jika request langsung ke index.php, biarkan
+    RewriteRule ^index\.php$ - [L]
+
+    # Kalau file/folder memang ada, jangan di-redirect
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Semua request lain diarahkan ke index.php Laravel
+    RewriteRule . /sosialhub/index.php [L]
+</IfModule>
